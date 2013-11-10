@@ -1,6 +1,6 @@
 <?php
 
-class EducationController extends BaseController {
+class SecurityController extends BaseController {
 
 	public function all()
 	{
@@ -8,15 +8,15 @@ class EducationController extends BaseController {
 
 		$response["Status"] 	= 200;
 		$response["Code"]		= 0;
-		$response["From"]		= "Education";
+		$response["From"]		= "Security";
 		$response["Message"] 	= "All years data.";
 
-		$educations = Education::all();
+		$securitys = Security::all();
 
-		foreach($educations as $education)
-			$education->data->toArray();
+		foreach($securitys as $security)
+			$security->data->toArray();
 
-		$response["Data"] = $educations->toArray();
+		$response["Data"] = $securitys->toArray();
 
 		return $response;
 	}
@@ -26,7 +26,7 @@ class EducationController extends BaseController {
 		$response = array();
 
 		$response["Status"] 	= 200;
-		$response["From"]		= "Education";
+		$response["From"]		= "Security";
 
 		if($id == null)
 		{
@@ -38,9 +38,9 @@ class EducationController extends BaseController {
 
 		$response["Code"] = 0;
 
-		$education = Education::find($id);
+		$security = Security::find($id);
 
-		if($education == null)
+		if($security == null)
 		{
 			$response["Code"]		= 2;
 			$response["Message"] 	= "Sorry, couldn't find this ID.";
@@ -48,9 +48,9 @@ class EducationController extends BaseController {
 			return $response;
 		}
 
-		$education->data->toArray();
+		$security->data->toArray();
 
-		$response["Data"] = $education->toArray();
+		$response["Data"] = $security->toArray();
 
 		return $response;
 	}
@@ -61,7 +61,7 @@ class EducationController extends BaseController {
 
 		$response["Status"] 	= 200;
 		$response["Code"]		= 0;
-		$response["From"]		= "Education";
+		$response["From"]		= "Security";
 		$response["Message"] 	= "Everything is fine!";
 
 		return $response;
@@ -80,23 +80,23 @@ class EducationController extends BaseController {
 
 		if(!$validation->fails())
 		{
-			$education = new Education;
+			$security = new Security;
 
-			$education->name = Input::get('name');
-			$education->description = Input::get('description');
+			$security->name = Input::get('name');
+			$security->description = Input::get('description');
 
-			$education->save();
+			$security->save();
 
 			$response["Code"]	 = 0;
-			$response["From"]	 = "Education";
-			$response["Message"] = "Data #".$education->id." registered!";
-			$response["Data"] 	 = $education->toArray();
+			$response["From"]	 = "Security";
+			$response["Message"] = "Data #".$security->id." registered!";
+			$response["Data"] 	 = $security->toArray();
 		
 			return $response;
 		}
 		else
 		{
-			$response["From"]	 = "Education";
+			$response["From"]	 = "Security";
 			$response["Code"]	 = 1;
 			$response["Message"] = $validation->messages()->all();
 			
@@ -109,19 +109,19 @@ class EducationController extends BaseController {
 		$response = array();
 
 		$response["Status"] 	= 200;
-		$response["From"]		= "Education";
+		$response["From"]		= "Security";
 
 		$validation = Validator::make(Input::all(), array(
-			'education_id' => array('required'),
+			'security_id' => array('required'),
 			'year' => array('required'),
 			'percentage' => array('required'),
 		));
 
 		if(!$validation->fails())
 		{
-			$education = Education::find(Input::get('education_id'));
+			$security = Security::find(Input::get('security_id'));
 
-			if($education == null)
+			if($security == null)
 			{
 				$response["Code"]		= 2;
 				$response["Message"] 	= "Sorry, couldn't find this ID.";
@@ -129,26 +129,26 @@ class EducationController extends BaseController {
 				return $response;
 			}
 
-			$educationData = new EducationData;
+			$securityData = new SecurityData;
 
-			$educationData->education_id = Input::get('education_id');
-			$educationData->year = Input::get('year');
-			$educationData->percentage = Input::get('percentage');
+			$securityData->security_id = Input::get('security_id');
+			$securityData->year = Input::get('year');
+			$securityData->percentage = Input::get('percentage');
 
-			$education->data()->save($educationData);
+			$security->data()->save($securityData);
 
-			$education->data->toArray();
+			$security->data->toArray();
 
 			$response["Code"]		 = 0;
-			$response["From"]		 = "Education";
+			$response["From"]		 = "Security";
 			$response["Message"]	 = "Data attached!";
-			$response["Data"] 		 = $education->toArray();
+			$response["Data"] 		 = $security->toArray();
 		
 			return $response;
 		}
 		else
 		{
-			$response["From"]	 = "Education";
+			$response["From"]	 = "Security";
 			$response["Code"]	 = 1;
 			$response["Message"] = $validation->messages()->all();
 			

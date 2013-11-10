@@ -1,6 +1,6 @@
 <?php
 
-class EducationController extends BaseController {
+class TransportController extends BaseController {
 
 	public function all()
 	{
@@ -8,15 +8,15 @@ class EducationController extends BaseController {
 
 		$response["Status"] 	= 200;
 		$response["Code"]		= 0;
-		$response["From"]		= "Education";
+		$response["From"]		= "Transport";
 		$response["Message"] 	= "All years data.";
 
-		$educations = Education::all();
+		$transports = Transport::all();
 
-		foreach($educations as $education)
-			$education->data->toArray();
+		foreach($transports as $transport)
+			$transport->data->toArray();
 
-		$response["Data"] = $educations->toArray();
+		$response["Data"] = $transports->toArray();
 
 		return $response;
 	}
@@ -26,7 +26,7 @@ class EducationController extends BaseController {
 		$response = array();
 
 		$response["Status"] 	= 200;
-		$response["From"]		= "Education";
+		$response["From"]		= "Transport";
 
 		if($id == null)
 		{
@@ -38,9 +38,9 @@ class EducationController extends BaseController {
 
 		$response["Code"] = 0;
 
-		$education = Education::find($id);
+		$transport = Transport::find($id);
 
-		if($education == null)
+		if($transport == null)
 		{
 			$response["Code"]		= 2;
 			$response["Message"] 	= "Sorry, couldn't find this ID.";
@@ -48,9 +48,9 @@ class EducationController extends BaseController {
 			return $response;
 		}
 
-		$education->data->toArray();
+		$transport->data->toArray();
 
-		$response["Data"] = $education->toArray();
+		$response["Data"] = $transport->toArray();
 
 		return $response;
 	}
@@ -61,7 +61,7 @@ class EducationController extends BaseController {
 
 		$response["Status"] 	= 200;
 		$response["Code"]		= 0;
-		$response["From"]		= "Education";
+		$response["From"]		= "Transport";
 		$response["Message"] 	= "Everything is fine!";
 
 		return $response;
@@ -80,23 +80,23 @@ class EducationController extends BaseController {
 
 		if(!$validation->fails())
 		{
-			$education = new Education;
+			$transport = new Transport;
 
-			$education->name = Input::get('name');
-			$education->description = Input::get('description');
+			$transport->name = Input::get('name');
+			$transport->description = Input::get('description');
 
-			$education->save();
+			$transport->save();
 
 			$response["Code"]	 = 0;
-			$response["From"]	 = "Education";
-			$response["Message"] = "Data #".$education->id." registered!";
-			$response["Data"] 	 = $education->toArray();
+			$response["From"]	 = "Transport";
+			$response["Message"] = "Data #".$transport->id." registered!";
+			$response["Data"] 	 = $transport->toArray();
 		
 			return $response;
 		}
 		else
 		{
-			$response["From"]	 = "Education";
+			$response["From"]	 = "Transport";
 			$response["Code"]	 = 1;
 			$response["Message"] = $validation->messages()->all();
 			
@@ -109,19 +109,19 @@ class EducationController extends BaseController {
 		$response = array();
 
 		$response["Status"] 	= 200;
-		$response["From"]		= "Education";
+		$response["From"]		= "Transport";
 
 		$validation = Validator::make(Input::all(), array(
-			'education_id' => array('required'),
+			'transport_id' => array('required'),
 			'year' => array('required'),
 			'percentage' => array('required'),
 		));
 
 		if(!$validation->fails())
 		{
-			$education = Education::find(Input::get('education_id'));
+			$transport = Transport::find(Input::get('transport_id'));
 
-			if($education == null)
+			if($transport == null)
 			{
 				$response["Code"]		= 2;
 				$response["Message"] 	= "Sorry, couldn't find this ID.";
@@ -129,26 +129,26 @@ class EducationController extends BaseController {
 				return $response;
 			}
 
-			$educationData = new EducationData;
+			$transportData = new TransportData;
 
-			$educationData->education_id = Input::get('education_id');
-			$educationData->year = Input::get('year');
-			$educationData->percentage = Input::get('percentage');
+			$transportData->transport_id = Input::get('transport_id');
+			$transportData->year = Input::get('year');
+			$transportData->percentage = Input::get('percentage');
 
-			$education->data()->save($educationData);
+			$transport->data()->save($transportData);
 
-			$education->data->toArray();
+			$transport->data->toArray();
 
 			$response["Code"]		 = 0;
-			$response["From"]		 = "Education";
+			$response["From"]		 = "Transport";
 			$response["Message"]	 = "Data attached!";
-			$response["Data"] 		 = $education->toArray();
+			$response["Data"] 		 = $transport->toArray();
 		
 			return $response;
 		}
 		else
 		{
-			$response["From"]	 = "Education";
+			$response["From"]	 = "Transport";
 			$response["Code"]	 = 1;
 			$response["Message"] = $validation->messages()->all();
 			

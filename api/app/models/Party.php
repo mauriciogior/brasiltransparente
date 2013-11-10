@@ -6,4 +6,8 @@ class Party extends Eloquent {
 
 	public $timestamps = true;
 
+	public function politician()
+	{
+		return $this->hasMany('Politician');
+	}
 }

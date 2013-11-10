@@ -6,7 +6,7 @@ class Politician extends Eloquent {
 
 	public $timestamps = true;
 	
-	public function data()
+	public function party()
 	{
 		return $this->belongsTo('Party');
 	}

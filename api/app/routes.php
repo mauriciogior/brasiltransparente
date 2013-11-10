@@ -18,38 +18,45 @@ function lost()
 |--------------------------------------------------------------------------
 */
 
-Route::get('education/{$id}', 'EducationController@info');
 Route::get('/', 'PublicController@index');
 
-//Route::get('newsletter/all', 'NewsletterController@all');
+//EDUCATION
 Route::get('education', 'EducationController@index');
 Route::get('education/all', 'EducationController@all');
+Route::get('education/{id}', 'EducationController@info');
 
 Route::post('education/create', 'EducationController@create');
-Route::get('education/create', function()
-{
-	return lost();
-});
+Route::post('education/attach', 'EducationController@attach');
 
-Route::post('user/auth', 'UserController@auth');
-Route::get('user/auth', function()
-{
-	return lost();
-});
+//TRANSPORT
+Route::get('transport', 'TransportController@index');
+Route::get('transport/all', 'TransportController@all');
+Route::get('transport/{id}', 'TransportController@info');
 
-Route::post('enterprise/create', 'EnterpriseController@create');
-Route::get('enterprise/create', function()
-{
-	return lost();
-});
+Route::post('transport/create', 'TransportController@create');
+Route::post('transport/attach', 'TransportController@attach');
 
-Route::post('user/create', 'UserController@create');
-Route::get('user/create', function()
-{
-	return lost();
-});
+//SECURITY
+Route::get('security', 'SecurityController@index');
+Route::get('security/all', 'SecurityController@all');
+Route::get('security/{id}', 'SecurityController@info');
 
-Route::get('enterprises', 'EnterpriseController@all');
+Route::post('security/create', 'SecurityController@create');
+Route::post('security/attach', 'SecurityController@attach');
+
+//POLITICIAN
+Route::get('politician', 'PoliticianController@index');
+Route::get('politician/all', 'PoliticianController@all');
+Route::get('politician/{id}', 'PoliticianController@info');
+
+Route::post('politician/create', 'PoliticianController@create');
+
+//PARTY
+Route::get('party', 'PartyController@index');
+Route::get('party/all', 'PartyController@all');
+Route::get('party/{id}', 'PartyController@info');
+
+Route::post('party/create', 'PartyController@create');
 
 App::missing(function($exception)
 {
