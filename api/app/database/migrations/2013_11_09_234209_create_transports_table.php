@@ -16,6 +16,7 @@ class CreateTransportsTable extends Migration {
 			$table->increments('id');
 
 			$table->string('name');
+			$table->integer('city_id');
 			$table->text('description');
 
 			$table->timestamps();

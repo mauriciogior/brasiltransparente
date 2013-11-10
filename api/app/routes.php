@@ -5,7 +5,6 @@ function lost()
 	$response = array();
 
 	$response["Status"]  = 404;
-	$response["Auth"] 	 = PublicController::getAuth();
 	$response["Code"] 	 = 0;
 	$response["Message"] = "URL not found";
 
@@ -57,6 +56,13 @@ Route::get('party/all', 'PartyController@all');
 Route::get('party/{id}', 'PartyController@info');
 
 Route::post('party/create', 'PartyController@create');
+
+//CITY
+Route::get('city', 'CityController@index');
+Route::get('city/all', 'CityController@all');
+Route::get('city/{id}', 'CityController@info');
+
+Route::post('city/create', 'CityController@create');
 
 App::missing(function($exception)
 {

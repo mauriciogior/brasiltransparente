@@ -17,6 +17,7 @@ class CreatePoliticiansTable extends Migration {
 
 			$table->string('name');
 			$table->integer('party_id');
+			$table->integer('city_id');
 			$table->string('role');
 			$table->string('avatar');
 			$table->integer('start');

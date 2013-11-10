@@ -76,6 +76,7 @@ class PoliticianController extends BaseController {
 		$validation = Validator::make(Input::all(), array(
 			'name' => array('required'),
 			'party_id' => array('required'),
+			'city_id' => array('required'),
 			'role' => array('required'),
 			'avatar' => array('required'),
 			'start' => array('required'),
@@ -88,6 +89,7 @@ class PoliticianController extends BaseController {
 
 			$politician->name = Input::get('name');
 			$politician->party_id = Input::get('party_id');
+			$politician->city_id = Input::get('city_id');
 			$politician->role = Input::get('role');
 			$politician->avatar = Input::get('avatar');
 			$politician->start = Input::get('start');

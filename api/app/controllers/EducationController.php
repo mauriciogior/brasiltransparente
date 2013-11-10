@@ -75,6 +75,7 @@ class EducationController extends BaseController {
 
 		$validation = Validator::make(Input::all(), array(
 			'name' => array('required'),
+			'city_id' => array('required'),
 			'description' => array('required'),
 		));
 
@@ -83,6 +84,7 @@ class EducationController extends BaseController {
 			$education = new Education;
 
 			$education->name = Input::get('name');
+			$education->city_id = Input::get('city_id');
 			$education->description = Input::get('description');
 
 			$education->save();

@@ -75,6 +75,7 @@ class SecurityController extends BaseController {
 
 		$validation = Validator::make(Input::all(), array(
 			'name' => array('required'),
+			'city_id' => array('required'),
 			'description' => array('required'),
 		));
 
@@ -83,6 +84,7 @@ class SecurityController extends BaseController {
 			$security = new Security;
 
 			$security->name = Input::get('name');
+			$security->city_id = Input::get('city_id');
 			$security->description = Input::get('description');
 
 			$security->save();

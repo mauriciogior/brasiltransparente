@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSecuritiesTable extends Migration {
+class CreateCitiesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,13 +11,13 @@ class CreateSecuritiesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('securities', function($table)
+		Schema::create('cities', function($table)
 		{
 			$table->increments('id');
 
 			$table->string('name');
-			$table->integer('city_id');
-			$table->text('description');
+			$table->string('state');
+			$table->string('state_acronym');
 
 			$table->timestamps();
 		});
@@ -30,7 +30,7 @@ class CreateSecuritiesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('securities');
+		Schema::drop('cities');
 	}
 
 }

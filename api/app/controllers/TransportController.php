@@ -75,6 +75,7 @@ class TransportController extends BaseController {
 
 		$validation = Validator::make(Input::all(), array(
 			'name' => array('required'),
+			'city_id' => array('required'),
 			'description' => array('required'),
 		));
 
@@ -83,6 +84,7 @@ class TransportController extends BaseController {
 			$transport = new Transport;
 
 			$transport->name = Input::get('name');
+			$transport->city_id = Input::get('city_id');
 			$transport->description = Input::get('description');
 
 			$transport->save();
