@@ -78,6 +78,8 @@ class PoliticianController extends BaseController {
 			'party_id' => array('required'),
 			'role' => array('required'),
 			'avatar' => array('required'),
+			'start' => array('required'),
+			'end' => array('required'),
 		));
 
 		if(!$validation->fails())
@@ -88,6 +90,8 @@ class PoliticianController extends BaseController {
 			$politician->party_id = Input::get('party_id');
 			$politician->role = Input::get('role');
 			$politician->avatar = Input::get('avatar');
+			$politician->start = Input::get('start');
+			$politician->end = Input::get('end');
 
 			$politician->save();
 
