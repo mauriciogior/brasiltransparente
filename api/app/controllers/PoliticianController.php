@@ -87,7 +87,7 @@ class PoliticianController extends BaseController {
 			$politician->name = Input::get('name');
 			$politician->party_id = Input::get('party_id');
 			$politician->role = Input::get('role');
-			$politician->avatar = Input::get('party_id');
+			$politician->avatar = Input::get('avatar');
 
 			$politician->save();
 
