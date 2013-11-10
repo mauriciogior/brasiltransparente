@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'allmej',
+			'database'  => 'deolhonomandato',
 			'username'  => 'root',
 			'password'  => '6uwgqj9w',
 			'charset'   => 'utf8',

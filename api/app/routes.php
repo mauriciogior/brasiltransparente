@@ -12,78 +12,21 @@ function lost()
 	return $response;
 }
 
-Route::filter('authentication', function($route, $request, $value)
-{
-	if($value == "enterprise")
-	{
-		if(Auth::user())
-		{
-			if(!Auth::user()->enterprise_id)
-			{
-				return lost();
-			}
-		}
-		else
-		{
-			return lost();
-		}
-	}
-	else if($value == "user")
-	{
-		if(Auth::user())
-		{
-			if(!Auth::user()->user_id)
-			{
-				return lost();
-			}
-		}
-		else
-		{
-			return lost();
-		}
-	}
-});
-
-/*
-|--------------------------------------------------------------------------
-| Rotas que exigem autenticação
-|--------------------------------------------------------------------------
-*/
-
-Route::group(array('before' => 'authentication:enterprise'), function()
-{
-	Route::get('enterprise', 'EnterpriseController@index');
-	Route::get('enterprise/logout', 'EnterpriseController@logout');
-	Route::get('enterprise/info', 'EnterpriseController@info');
-});
-
-Route::group(array('before' => 'authentication:user'), function()
-{
-	Route::get('user', 'UserController@index');
-	Route::get('user/logout', 'UserController@logout');
-	Route::get('user/info', 'UserController@info');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Rotas públicas
 |--------------------------------------------------------------------------
 */
 
+Route::get('education/{$id}', 'EducationController@info');
 Route::get('/', 'PublicController@index');
 
 //Route::get('newsletter/all', 'NewsletterController@all');
-Route::get('newsletter/{id}', 'NewsletterController@info');
+Route::get('education', 'EducationController@index');
+Route::get('education/all', 'EducationController@all');
 
-Route::post('newsletter/create', 'NewsletterController@create');
-Route::post('newsletter/create/{ref}', 'NewsletterController@create');
-Route::get('newsletter/create', function()
-{
-	return lost();
-});
-
-Route::post('enterprise/auth', 'EnterpriseController@auth');
-Route::get('enterprise/auth', function()
+Route::post('education/create', 'EducationController@create');
+Route::get('education/create', function()
 {
 	return lost();
 });
