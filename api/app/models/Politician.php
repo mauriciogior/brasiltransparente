@@ -10,4 +10,9 @@ class Politician extends Eloquent {
 	{
 		return $this->belongsTo('Party');
 	}
+	
+	public function city()
+	{
+		return $this->belongsTo('City');
+	}
 }

@@ -48,6 +48,96 @@ class PartyController extends BaseController {
 			return $response;
 		}
 
+		$curr=0;
+		$beg=0;
+		$med=0;
+		$j=0;
+
+		foreach($party->politician as $politician)
+		{
+			$city = $politician->city;
+
+			$education = array();
+			$security  = array();
+			$transport = array();
+
+			$beg = $curr;
+
+			if($city->educations)
+			{
+				for($j=0;$j<2;$j++)
+				{
+					$med = 0;
+
+					for($i=$beg; $i<$beg+4; $i++)
+						$med += $city->educations[$j]->data[$i]->percentage;
+
+					$med /= 4;
+
+					$data = new stdClass();
+
+					$data->id = $city->educations[$j]->id;
+					$data->name = $city->educations[$j]->name;
+					$data->description = $city->educations[$j]->description;
+					$data->value = $med;
+
+					array_push($education,$data);
+				}
+			}
+
+			if($city->securities)
+			{
+				for($j=0;$j<2;$j++)
+				{
+					$med = 0;
+
+					for($i=$beg; $i<$beg+4; $i++)
+						$med += $city->securities[$j]->data[$i]->percentage;
+
+					$med /= 4;
+
+					$data = new stdClass();
+
+					$data->id = $city->securities[$j]->id;
+					$data->name = $city->securities[$j]->name;
+					$data->description = $city->securities[$j]->description;
+					$data->value = $med;
+
+					array_push($security,$data);
+				}
+			}
+
+			if($city->transports)
+			{
+				for($j=0;$j<2;$j++)
+				{
+					$med = 0;
+
+					for($i=$beg; $i<$beg+4; $i++)
+						$med += $city->transports[$j]->data[$i]->percentage;
+
+					$med /= 4;
+
+					$data = new stdClass();
+
+					$data->id = $city->transports[$j]->id;
+					$data->name = $city->transports[$j]->name;
+					$data->description = $city->transports[$j]->description;
+					$data->value = $med;
+
+					array_push($transport,$data);
+				}
+			}
+
+			$politician->education = $education;
+			$politician->security = $security;
+			$politician->transport = $transport;
+
+			unset($politician->city);
+
+			$curr += 3;
+		}
+
 		$party->politician->toArray();
 
 		$response["Data"] = $party->toArray();
