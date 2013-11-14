@@ -171,6 +171,31 @@ $(document).ready(function(){
 			previousPoint = null;
 		}
 	});
+
+	//Get context with jQuery - using jQuery's .get() method.
+	var ctx = $("#myChart").get(0).getContext("2d");
+	var data = {
+		labels : ["Educação","Transporte","Segurança"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,1)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [57,61,31]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.1)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [61,55,41]
+			}
+		]
+	};
+
+	//This will get the first returned node in the jQuery collection.
+	var myNewChart = new Chart(ctx).Radar(data);
 });
 
 function selectCity(arrPos, pol) {

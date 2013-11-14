@@ -250,8 +250,8 @@
             </ul>
           </div>
 
-          <button id="politicianBefore">Antecessor</button>
-          <button id="politicianAfter">Sucessor</button>
+          <button id="politicianBefore" style="width:49%">&lt;&lt; Antecessor</button>
+          <button id="politicianAfter" style="width:50%">Sucessor &gt;&gt;</button>
 
           <div id="sector-selector">
             <header class="selector">
@@ -306,23 +306,24 @@
           </header>
         </div>
 
-        <div class="party-details">
-          <ul>
-            <li><img src="http://www.alepa.pa.gov.br/alepa/partidos/fotop/psd.jpg"/></li>
-            <li>X</li>
-            <li><img src="http://www.alepa.pa.gov.br/alepa/partidos/fotop/pt.jpg"/></li>
-          </ul>
+        <ul class="legend">
+          <li>PSD</li>
+          <li>PT</li>
+        </ul>
+        <div style="text-align: center">
+          <canvas id="myChart" width="300" height="400"></canvas>
         </div>
       </div>
     </article>
   </section>
-
   <script type="text/javascript" defer src="js/status.js"></script>
   <script type="text/javascript" defer src="js/seekbars.js"></script>
   <!-- <script type="text/javascript" defer src="js/app.js"></script> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="js/jquery.flot.min.js"></script>
+  
+  <script src="js/Chart.js"></script>
   <script type="text/javascript" defer src="js/default.js"></script>
 </body>
 </html>

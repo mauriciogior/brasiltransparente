@@ -52,9 +52,11 @@ class PartyController extends BaseController {
 		$beg=0;
 		$med=0;
 		$j=0;
+		$i=0;
 
 		foreach($party->politician as $politician)
 		{
+
 			$city = $politician->city;
 
 			$education = array();
@@ -68,6 +70,9 @@ class PartyController extends BaseController {
 				for($j=0;$j<2;$j++)
 				{
 					$med = 0;
+
+					var_dump($city);
+					die();
 
 					for($i=$beg; $i<$beg+4; $i++)
 						$med += $city->educations[$j]->data[$i]->percentage;
